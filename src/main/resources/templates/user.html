@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body th:object="${user}">
+
+<nav class="navbar navbar-dark bg-dark w-100">
+    <div class="col-3">
+        <span class="text-light" th:inline="text">
+            <b class="font-weight-bold">[[${email}]]</b> with roles:
+          <span th:each="role : ${user.getRoles()}">
+                <span th:text="${role.role.substring(5,role.role.length())}"></span>
+            </span>
+        </span>
+    </div>
+    <div class="col-7"></div>
+    <div class="col-2 text-right">
+        <a th:href="@{/logout}" class="text-light text-decoration-none">Logout</a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 pt-4 pl-0 pr-0" style="height: 700px">
+            <ul class="nav flex-column nav-pills" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" th:href="@{/user}" role="tab"
+                       aria-controls="pills-profile" aria-selected="false">User</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-10 pt-3 pl-5 bg-light">
+            <h2 class="text-left font-weight-bold m-2">User information-page</h2>
+            <div class="container p-0 bg-white border">
+                <div class="p-2 mb-4 bg-light text-dark border">
+                    <h5>About user</h5>
+                </div>
+                <div class="col">
+                    <table class="table table-striped" style="border-top: solid white">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Age</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${user.getId()}">...</td>
+                            <td th:text="${user.getUsername()}">...</td>
+                            <td th:text="${user.name}">...</td>
+                            <td th:text="${user.surname}">...</td>
+                            <td th:text="${user.age}">...</td>
+                            <td>
+                            <span th:each="role : ${user.getRoles()}">
+                                 <span th:text="${role.role.substring(5, role.role.length())}"></span>
+                            </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
