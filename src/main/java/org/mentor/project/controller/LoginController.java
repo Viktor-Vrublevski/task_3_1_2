@@ -39,7 +39,7 @@ public class LoginController {
             roles.add(roleService.getRole(2));
             user.setRoles(roles);
             user.setUsername("admin@mail.ru");
-            user.setPassword(encoder.encode("1111"));
+            user.setPassword(encoder.encode("ADMIN"));
             user.setName("ADMIN");
             user.setSurname("ADMIN");
             user.setAge((byte)100);
